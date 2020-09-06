@@ -32,5 +32,17 @@ namespace MP.MKKing.API
 
             return Ok(product);
         }
+
+        [HttpGet("brands")]
+        public async Task<ActionResult<List<ProductBrand>>> GetProductBrands()
+        {
+            return Ok(await _productRepository.GetProductBrandsAsync());
+        }
+
+        [HttpGet("types")]
+        public async Task<ActionResult<List<ProductBrand>>> GetProductTypes()
+        {
+            return Ok(await _productRepository.GetProductTypesAsync());
+        }
     }
 }
