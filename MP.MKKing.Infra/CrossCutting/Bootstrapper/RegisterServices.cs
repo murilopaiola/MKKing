@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using MP.MKKing.Infra.Context;
+using MP.MKKing.Core.Interfaces;
+using MP.MKKing.Infra.Data.Context;
+using MP.MKKing.Infra.Data.Repositories;
 
-namespace MP.MKKing.Infra.Bootstrapper
+namespace MP.MKKing.Infra.CrossCutting.Bootstrapper
 {
     public static class RegisterServices
     {
@@ -11,6 +13,13 @@ namespace MP.MKKing.Infra.Bootstrapper
             //DbContext
             services.AddDbContext<MKKingContext>(d => 
                 d.UseSqlite(connectionString));
+
+            services.RegisterRepositories();
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

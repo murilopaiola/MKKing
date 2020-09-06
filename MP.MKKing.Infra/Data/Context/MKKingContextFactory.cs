@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace MP.MKKing.Infra.Context
+namespace MP.MKKing.Infra.Data.Context
 {
     public class MKKingContextFactory : IDesignTimeDbContextFactory<MKKingContext>
     {

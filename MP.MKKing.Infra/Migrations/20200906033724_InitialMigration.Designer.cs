@@ -2,14 +2,16 @@
 using MP.MKKing.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MP.MKKing.Infra.Migrations
 {
     [DbContext(typeof(MKKingContext))]
-    partial class MKKingContextModelSnapshot : ModelSnapshot
+    [Migration("20200906033724_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

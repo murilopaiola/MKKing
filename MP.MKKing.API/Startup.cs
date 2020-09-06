@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MP.MKKing.Infra.Bootstrapper;
+using MP.MKKing.Infra.CrossCutting.Bootstrapper;
 
 namespace MP.MKKing.API
 {
