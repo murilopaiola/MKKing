@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "Name": "Plates"
+  },
+  {
+    "Id": 2,
+    "Name": "Keycaps"
+  },
+  {
+    "Id": 3,
+    "Name": "Switches"
+  },
+  {
+    "Id": 4,
+    "Name": "Case"
+  },
+  {
+    "Id": 5,
+    "Name": "Pcb"
+  }
+]

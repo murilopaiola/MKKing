@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MP.MKKing.Infra.Migrations
 {
     [DbContext(typeof(MKKingContext))]
-    [Migration("20200906033724_InitialMigration")]
+    [Migration("20200906200511_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

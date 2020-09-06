@@ -1,0 +1,122 @@
+[
+  {
+    "Name": "DZ60 CNC (ALUMINUM/STEEL/BRASS) PLATE",
+    "Description": "1.5 mm thickness plate compatible with gh60, dz60",
+    "Price": 38,
+    "PictureUrl": "images/products/sb-ang1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "BRASS 60% PLATE",
+    "Description": "Brushed finish brass plate compatible with gh60, dz60",
+    "Price": 59,
+    "PictureUrl": "images/products/sb-ang2.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "KBDFANS75 ALUMINUM PLATE A",
+    "Description": "Made with CNC, 75% layout",
+    "Price": 40,
+    "PictureUrl": "images/products/sb-core1.png",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "ENJOYPBT 9009 KEYCAPS SET",
+    "Description": "PBT plastic, dye-sub process, 178 keys, cherry profile",
+    "Price": 139,
+    "PictureUrl": "images/products/sb-core2.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "NPKC DSA 111 KEYCAPS",
+    "Description": "PBT plastic, dye-sub process, 111 keys, dsa profile",
+    "Price": 56,
+    "PictureUrl": "images/products/sb-react1.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "EC KEYCAPS RUSSIAN COMPATIBLE HHKB",
+    "Description": "PBT plastic, dye-sub process, HHKB compatible",
+    "Price": 120,
+    "PictureUrl": "images/products/sb-ts1.png",
+    "ProductTypeId": 2,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "NOVELKEYS X KAILH LINEAR CREAM SWITCH (10 PCS)",
+    "Description": "NovelKeys Cream switches are a brand new linear switch. Featuring housing and stem that is made out of self lubricating POM, this linear is a smooth and unique experience. NovelKeys Cream - Linear | 4mm travel | 2mm operating | 55g actuation | 70g bottom out",
+    "Price": 8,
+    "PictureUrl": "images/products/hat-core1.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "HAKO VIOLET MECHANICAL SWITCHES (10 PCS)",
+    "Description": "Box tactile switches manufactured by Kaihua - Tactile | 3.6mm travel | 1.88mm operating | 28g actuation | 50 bottom out",
+    "Price": 7,
+    "PictureUrl": "images/products/hat-react1.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "GATERON MILK BLACK SWITCHES (10 PCS)",
+    "Description": "Gateron Black – Linear | 4.0mm travel | 60g Actuation",
+    "Price": 4,
+    "PictureUrl": "images/products/hat-react2.png",
+    "ProductTypeId": 3,
+    "ProductBrandId": 6
+  },
+  {
+    "Name": "60% ALUMINUM LOW PROFILE CASE",
+    "Description": "CNC aluminum, fits most 60% keyboards, low profile.",
+    "Price": 55,
+    "PictureUrl": "images/products/glove-code1.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "TOFU E-WHITE 60% ALUMINUM CASE",
+    "Description": "60% layout compatible, aluminum and CNC manufacturing, electrophoresis process",
+    "Price": 118,
+    "PictureUrl": "images/products/glove-code2.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "KBD75V2 ALUMINUM CASE",
+    "Description": "75% layout compatible, aluminum and CNC",
+    "Price": 120,
+    "PictureUrl": "images/products/glove-react1.png",
+    "ProductTypeId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "DZ60 REV 3.0 60% MECHANICAL KEYBOARD PCB",
+    "Description": "QMK Firmware, USB-C, 60% layout compatible",
+    "Price": 58,
+    "PictureUrl": "images/products/glove-react2.png",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "DZ60RGB V2 HOT SWAP CUSTOM KEYBOARD PCB",
+    "Description": "QMK Firmware, USB-C, 64Layout, RPG per key, hot-swappable",
+    "Price": 75,
+    "PictureUrl": "images/products/boot-redis1.png",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "KBD75 REV 2.0 PCB",
+    "Description": "QMK Firmware, USB-C, 75% Layout",
+    "Price": 60,
+    "PictureUrl": "images/products/boot-core2.png",
+    "ProductTypeId": 5,
+    "ProductBrandId": 1
+  }
+]
