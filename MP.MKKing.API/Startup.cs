@@ -31,7 +31,7 @@ namespace MP.MKKing.API
             services.AddControllers();
 
             services.AddAutoMapper(typeof(MappingProfiles));
-            
+
             services.Register(Configuration.GetConnectionString("DefaultConnection"));
         }
 
@@ -46,6 +46,8 @@ namespace MP.MKKing.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
