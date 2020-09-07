@@ -4,17 +4,15 @@ using System.Linq.Expressions;
 
 namespace MP.MKKing.Core.Specifications
 {
+    /// <summary>
+    /// A generic specification class for DTOs of type <see cref="T"/>
+    /// </summary>
+    /// <typeparam name="T">The DTO</typeparam>
     public class BaseSpecification<T> : ISpecification<T>
     {
-        public BaseSpecification(Expression<Func<T, bool>> criteria)
-        {
-            Criteria = criteria;
-        }
+        public BaseSpecification(Expression<Func<T, bool>> criteria) => Criteria = criteria;
 
-        public BaseSpecification()
-        {
-            
-        }
+        public BaseSpecification() { }
 
         public Expression<Func<T, bool>> Criteria { get; }
 

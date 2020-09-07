@@ -5,6 +5,10 @@ using MP.MKKing.Core.Specifications;
 
 namespace MP.MKKing.Infra.Data
 {
+    /// <summary>
+    /// Evaluator to apply specifications to an IQueryable <see cref="GetQueryable"/>
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
     public class SpecificationEvaluator<TEntity> where TEntity : BaseModel
     {
         public static IQueryable<TEntity> GetQueryable(IQueryable<TEntity> inputQuery, ISpecification<TEntity> spec)

@@ -5,6 +5,10 @@ using MP.MKKing.Core.Specifications;
 
 namespace MP.MKKing.Core.Interfaces
 {
+    /// <summary>
+    /// Interface for the generic repository <see href="BaseRepository"/>
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IBaseRepository<T> where T : BaseModel
     {
         Task<T> GetByIdAsync(int id); 

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MP.MKKing.API.DTOs;
 using MP.MKKing.Core.Interfaces;
 using MP.MKKing.Core.Models;
 using MP.MKKing.Core.Specifications;
@@ -14,24 +16,27 @@ namespace MP.MKKing.API
         private readonly IBaseRepository<Product> _productRepository;
         private readonly IBaseRepository<ProductBrand> _productBrandRepository;
         private readonly IBaseRepository<ProductType> _productTypeRepository;
+        private readonly IMapper _mapper;
 
         public ProductsController(IBaseRepository<Product> productRepository,
             IBaseRepository<ProductBrand> productBrandRepository,
-            IBaseRepository<ProductType> productTypeRepository)
+            IBaseRepository<ProductType> productTypeRepository, 
+            IMapper mapper)
         {
             _productBrandRepository = productBrandRepository;
             _productRepository = productRepository;
             _productTypeRepository = productTypeRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
         {
             var specification = new ProductsWithTypesAndBrandsSpecification();
 
             var products = await _productRepository.ListAsync(specification);
 
-            return Ok(products);
+            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDTO>>(products));
         }
 
         [HttpGet("{id}")]
@@ -41,7 +46,7 @@ namespace MP.MKKing.API
 
             var product = await _productRepository.GetEntityWithSpec(specification);
 
-            return Ok(product);
+            return Ok(_mapper.Map<Product, ProductDTO>(product));
         }
 
         [HttpGet("brands")]

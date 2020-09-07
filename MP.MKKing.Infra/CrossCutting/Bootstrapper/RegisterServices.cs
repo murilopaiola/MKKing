@@ -6,6 +6,9 @@ using MP.MKKing.Infra.Data.Repositories;
 
 namespace MP.MKKing.Infra.CrossCutting.Bootstrapper
 {
+    /// <summary>
+    /// Register services to a container
+    /// </summary>
     public static class RegisterServices
     {
         public static void Register(this IServiceCollection services, string connectionString)

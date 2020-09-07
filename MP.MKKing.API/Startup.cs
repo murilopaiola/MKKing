@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MP.MKKing.API.Helpers;
 using MP.MKKing.Infra.CrossCutting.Bootstrapper;
 
 namespace MP.MKKing.API
@@ -27,6 +29,9 @@ namespace MP.MKKing.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddAutoMapper(typeof(MappingProfiles));
+            
             services.Register(Configuration.GetConnectionString("DefaultConnection"));
         }
 

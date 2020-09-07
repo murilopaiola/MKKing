@@ -11,6 +11,9 @@ using MP.MKKing.Infra.Data.Context;
 
 namespace MP.MKKing.Infra.Data.Seed
 {
+    /// <summary>
+    /// Seed data to the database <see cref="SeedAsync"/>
+    /// </summary>
     public class MKKingContextSeed
     {
         public static async Task SeedAsync(MKKingContext context, ILoggerFactory loggerFactory)
