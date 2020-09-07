@@ -20,6 +20,7 @@ namespace MP.MKKing.Infra.CrossCutting.Bootstrapper
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         }
     }
 }
