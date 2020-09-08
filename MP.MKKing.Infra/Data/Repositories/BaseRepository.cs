@@ -43,7 +43,7 @@ namespace MP.MKKing.Infra.Data.Repositories
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec) => await ApplySpecification(spec).ToListAsync();
 
         /// <summary>
-        /// Count items of a collection under a certain specification
+        /// Count items of a collection under a certain specification <see cref="ApplySpecification"/>
         /// </summary>
         /// <param name="spec"></param>
         /// <returns></returns>
