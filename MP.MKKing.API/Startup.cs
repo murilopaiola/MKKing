@@ -60,6 +60,15 @@ namespace MP.MKKing.API
                     Version = "v1"
                 });
             });
+
+            // Add CORS, so that any client that is not coming from port 4200 doesn't receive the headers that allow the browser to access our resources
+            services.AddCors(opt => 
+            {
+                opt.AddPolicy("CorsPolicy", policy => 
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +85,8 @@ namespace MP.MKKing.API
             app.UseRouting();
 
             app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
