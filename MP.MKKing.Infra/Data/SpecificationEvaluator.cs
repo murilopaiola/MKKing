@@ -18,6 +18,12 @@ namespace MP.MKKing.Infra.Data
             if (null != spec.Criteria)
                 query = query.Where(spec.Criteria);
 
+            if (null != spec.OrderBy)
+                query = query.OrderBy(spec.OrderBy);
+
+            if (null != spec.OrderByDescending)
+                query = query.OrderByDescending(spec.OrderByDescending);
+
             query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 
             return query;

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MP.MKKing.API.Controllers;
 using MP.MKKing.API.DTOs;
+using MP.MKKing.API.Errors;
 using MP.MKKing.Core.Interfaces;
 using MP.MKKing.Core.Models;
 using MP.MKKing.Core.Specifications;
@@ -29,9 +31,9 @@ namespace MP.MKKing.API
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetProducts(string sort, int? brandId, int? typeId)
         {
-            var specification = new ProductsWithTypesAndBrandsSpecification();
+            var specification = new ProductsWithTypesAndBrandsSpecification(sort, brandId, typeId);
 
             var products = await _productRepository.ListAsync(specification);
 
@@ -39,11 +41,15 @@ namespace MP.MKKing.API
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult<ProductDTO>> GetProduct(int id)
         {
             var specification = new ProductsWithTypesAndBrandsSpecification(id);
 
             var product = await _productRepository.GetEntityWithSpec(specification);
+
+            if (null == product) return NoContent();
 
             return Ok(_mapper.Map<Product, ProductDTO>(product));
         }
