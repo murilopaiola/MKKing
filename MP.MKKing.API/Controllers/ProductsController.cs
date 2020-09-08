@@ -29,7 +29,7 @@ namespace MP.MKKing.API
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetProducts()
         {
             var specification = new ProductsWithTypesAndBrandsSpecification();
 
@@ -39,7 +39,7 @@ namespace MP.MKKing.API
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDTO>> GetProduct(int id)
         {
             var specification = new ProductsWithTypesAndBrandsSpecification(id);
 
@@ -55,7 +55,7 @@ namespace MP.MKKing.API
         }
 
         [HttpGet("types")]
-        public async Task<ActionResult<List<ProductBrand>>> GetProductTypes()
+        public async Task<ActionResult<List<ProductType>>> GetProductTypes()
         {
             return Ok(await _productTypeRepository.ListAllAsync());
         }

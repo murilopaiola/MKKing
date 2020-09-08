@@ -10,7 +10,7 @@ namespace MP.MKKing.Core.Specifications
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
         /// <summary>
-        /// Constructor to set Includes only
+        /// Default constructor
         /// </summary>
         public ProductsWithTypesAndBrandsSpecification()
         {
@@ -19,7 +19,7 @@ namespace MP.MKKing.Core.Specifications
         }
 
         /// <summary>
-        /// Constructor to set Criteria and Includes
+        /// Constructor with criteria
         /// </summary>
         /// <param name="id"></param>
         public ProductsWithTypesAndBrandsSpecification(int id) : base(p => p.Id == id)

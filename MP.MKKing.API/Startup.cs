@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using MP.MKKing.API.Errors;
 using MP.MKKing.API.Helpers;
 using MP.MKKing.API.Middleware;
@@ -50,6 +51,15 @@ namespace MP.MKKing.API
                     return new BadRequestObjectResult(errorResponse);
                 };
             });
+
+            services.AddSwaggerGen(config => 
+            {
+                config.SwaggerDoc("v1", new OpenApiInfo 
+                {
+                    Title = "Mechanical Keyboards King API",
+                    Version = "v1"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,6 +78,14 @@ namespace MP.MKKing.API
             app.UseStaticFiles();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            // Configure Swagger endpoint
+            app.UseSwaggerUI(config => 
+            { 
+                config.SwaggerEndpoint("/swagger/v1/swagger.json", "MKKing API v1"); 
+            });
 
             app.UseEndpoints(endpoints =>
             {
