@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using MP.MKKing.API.Controllers;
 using MP.MKKing.API.DTOs;
 using MP.MKKing.Core.Interfaces;
 using MP.MKKing.Core.Models;
@@ -9,9 +10,7 @@ using MP.MKKing.Core.Specifications;
 
 namespace MP.MKKing.API
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         private readonly IBaseRepository<Product> _productRepository;
         private readonly IBaseRepository<ProductBrand> _productBrandRepository;
