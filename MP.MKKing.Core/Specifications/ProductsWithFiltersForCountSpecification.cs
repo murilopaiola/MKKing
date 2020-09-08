@@ -2,6 +2,9 @@ using MP.MKKing.Core.Models;
 
 namespace MP.MKKing.Core.Specifications
 {
+    /// <summary>
+    /// Just to get the count of items to populate <see cref="Pagination" class/>
+    /// </summary>
     public class ProductsWithFiltersForCountSpecification : BaseSpecification<Product>
     {
         public ProductsWithFiltersForCountSpecification(ProductSpecificationParameters productParams)
