@@ -23,6 +23,10 @@ namespace MP.MKKing.Infra.Data
 
             if (null != spec.OrderByDescending)
                 query = query.OrderByDescending(spec.OrderByDescending);
+            
+            // Page the query. This has to come after any filtering or sorting.
+            if (spec.IsPagingEnabled)
+                query = query.Skip(spec.Skip).Take(spec.Take);
 
             query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 

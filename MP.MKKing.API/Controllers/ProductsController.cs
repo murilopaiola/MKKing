@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using MP.MKKing.API.Controllers;
 using MP.MKKing.API.DTOs;
 using MP.MKKing.API.Errors;
+using MP.MKKing.API.Helpers;
 using MP.MKKing.Core.Interfaces;
 using MP.MKKing.Core.Models;
 using MP.MKKing.Core.Specifications;
@@ -31,13 +32,19 @@ namespace MP.MKKing.API
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductDTO>>> GetProducts(string sort, int? brandId, int? typeId)
+        public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery]ProductSpecificationParameters productParams)
         {
-            var specification = new ProductsWithTypesAndBrandsSpecification(sort, brandId, typeId);
+            var specification = new ProductsWithTypesAndBrandsSpecification(productParams);
+
+            var countSpec = new ProductsWithFiltersForCountSpecification(productParams);
 
             var products = await _productRepository.ListAsync(specification);
 
-            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDTO>>(products));
+            var totalItems = await _productRepository.CountAsync(countSpec);
+
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDTO>>(products);
+
+            return Ok(new Pagination<ProductDTO>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
         [HttpGet("{id}")]

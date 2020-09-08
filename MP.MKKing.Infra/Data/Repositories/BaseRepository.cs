@@ -33,20 +33,28 @@ namespace MP.MKKing.Infra.Data.Repositories
         /// </summary>
         /// <param name="specification"></param>
         /// <returns></returns>
-        public async Task<T> GetEntityWithSpec(ISpecification<T> specification) => await ApplySpecification(specification).FirstOrDefaultAsync();
+        public async Task<T> GetEntityWithSpec(ISpecification<T> spec) => await ApplySpecification(spec).FirstOrDefaultAsync();
 
         /// <summary>
         /// List all entities applying specification <see cref="ApplySpecification"/>
         /// </summary>
         /// <param name="specification"></param>
         /// <returns></returns>
-        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification) => await ApplySpecification(specification).ToListAsync();
+        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec) => await ApplySpecification(spec).ToListAsync();
+
+        /// <summary>
+        /// Count items of a collection under a certain specification
+        /// </summary>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        public async Task<int> CountAsync(ISpecification<T> spec) => await ApplySpecification(spec).CountAsync();
 
         /// <summary>
         /// Apply specification to an <see cref="IQueryable"/>
         /// </summary>
         /// <param name="specification"></param>
         /// <returns></returns>
-        private IQueryable<T> ApplySpecification(ISpecification<T> specification) => SpecificationEvaluator<T>.GetQueryable(DbSet.AsQueryable(), specification);
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec) => SpecificationEvaluator<T>.GetQueryable(DbSet.AsQueryable(), spec);
+
     }
 }

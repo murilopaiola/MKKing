@@ -5,24 +5,27 @@ using MP.MKKing.Core.Models;
 namespace MP.MKKing.Core.Specifications
 {
     /// <summary>
-    /// A specification to eager load <see cref="ProductBrand"/> and <see cref="ProductType"/> into <see cref="Product"/> DTO
+    /// A specification to eager load <see cref="ProductBrand"/> and <see cref="ProductType"/> into a <see cref="Product"/> DTO.
+    /// This class accepts <see cref="ProductSpecificationParameters"/>
     /// </summary>
     public class ProductsWithTypesAndBrandsSpecification : BaseSpecification<Product>
     {
         /// <summary>
-        /// Constructor that accepts sort and filter values (Criteria)
+        /// Constructor that takes a <see cref="ProductSpecificationParameters"/>
         /// </summary>
-        public ProductsWithTypesAndBrandsSpecification(string sort, int? brandId, int? typeId) 
-            : base(x => (!brandId.HasValue || x.ProductBrandId == brandId) && 
-                        (!typeId.HasValue || x.ProductTypeId == typeId))
+        /// <param name="productParams"></param>
+        public ProductsWithTypesAndBrandsSpecification(ProductSpecificationParameters productParams) 
+            : base(x => (!productParams.BrandId.HasValue || x.ProductBrandId == productParams.BrandId) && 
+                        (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId))
         {
             AddInclude(p => p.ProductType);
             AddInclude(p => p.ProductBrand);
             AddOrderBy(p => p.Name);
+            ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
-            if (!string.IsNullOrEmpty(sort))
+            if (!string.IsNullOrEmpty(productParams.Sort))
             {
-                switch (sort)
+                switch (productParams.Sort)
                 {
                     case "priceAsc": 
                         AddOrderBy(p => p.Price);
