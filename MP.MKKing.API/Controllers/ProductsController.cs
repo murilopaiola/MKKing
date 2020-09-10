@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MP.MKKing.API.Controllers;
@@ -31,6 +32,11 @@ namespace MP.MKKing.API
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// A method to get a list of products
+        /// </summary>
+        /// <param name="productParams"></param>
+        /// <returns>Paginated products result</returns>
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery]ProductSpecificationParameters productParams)
         {

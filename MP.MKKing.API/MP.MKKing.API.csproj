@@ -7,8 +7,14 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1"/>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.5.1"/>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="5.5.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.7"/>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.6.0"/>
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
   </PropertyGroup>
 </Project>

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using MP.MKKing.API.Configuration.JWT;
+using MP.MKKing.API.Configuration.Swagger;
 using MP.MKKing.API.Errors;
 using MP.MKKing.API.Helpers;
 using MP.MKKing.API.Middleware;
@@ -15,6 +17,7 @@ namespace MP.MKKing.API
 {
     public class Startup
     {
+        public const string jwtSecret = "409F9F5D-6CB8-48ED-A1C0-AD602950B308";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,14 +55,9 @@ namespace MP.MKKing.API
                 };
             });
 
-            services.AddSwaggerGen(config => 
-            {
-                config.SwaggerDoc("v1", new OpenApiInfo 
-                {
-                    Title = "Mechanical Keyboards King API",
-                    Version = "v1"
-                });
-            });
+            // services.AddJwtConfiguration(System.Text.Encoding.ASCII.GetBytes(jwtSecret));
+
+            services.AddSwagger();
 
             // Add CORS, so that any client that is not coming from port 4200 doesn't receive the headers that allow the browser to access our resources
             services.AddCors(opt => 
@@ -88,15 +86,7 @@ namespace MP.MKKing.API
 
             app.UseCors("CorsPolicy");
 
-            app.UseAuthorization();
-
-            app.UseSwagger();
-
-            // Configure Swagger endpoint
-            app.UseSwaggerUI(config => 
-            { 
-                config.SwaggerEndpoint("/swagger/v1/swagger.json", "MKKing API v1"); 
-            });
+            app.UseSwaggerConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
