@@ -4,9 +4,24 @@
     min-width: 25px;
     border-radius: 50%;
     font-size: 1em;
-    background:red;
+    background:#ef233c;
     color: white;
     text-align: center;
     top: -12px;
     right: 32px;
+}
+
+a {
+    text-decoration: none;
+    color: #2b2d42;
+    &.active {
+        color: #ef233c;
+    }
+}
+
+.logo {
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
 }
