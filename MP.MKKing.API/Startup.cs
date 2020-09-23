@@ -32,7 +32,9 @@ namespace MP.MKKing.API
 
             services.AddAutoMapper(typeof(MappingProfiles));
 
-            services.Register(Configuration.GetConnectionString("DefaultConnection"));
+            services.Register(Configuration);
+            
+            // services.AddJwtConfiguration(System.Text.Encoding.ASCII.GetBytes(jwtSecret));
 
             // Get the model state errors inside actionContext (which is what the ApiController attribute is using 
             // to populate any errors that is related to validation, adding it to a model state dictionary).
@@ -54,8 +56,6 @@ namespace MP.MKKing.API
                     return new BadRequestObjectResult(errorResponse);
                 };
             });
-
-            // services.AddJwtConfiguration(System.Text.Encoding.ASCII.GetBytes(jwtSecret));
 
             services.AddSwagger();
 

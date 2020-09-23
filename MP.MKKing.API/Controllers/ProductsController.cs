@@ -53,6 +53,11 @@ namespace MP.MKKing.API
             return Ok(new Pagination<ProductDTO>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
+        /// <summary>
+        /// A method to get a product by id
+        /// </summary>
+        /// <param name="id">id of the product</param>
+        /// <returns>A product</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -67,12 +72,20 @@ namespace MP.MKKing.API
             return Ok(_mapper.Map<Product, ProductDTO>(product));
         }
 
+        /// <summary>
+        /// A method to get all product brands
+        /// </summary>
+        /// <returns>all product brands</returns>
         [HttpGet("brands")]
         public async Task<ActionResult<List<ProductBrand>>> GetProductBrands()
         {
             return Ok(await _productBrandRepository.ListAllAsync());
         }
-
+        
+        /// <summary>
+        /// A method to get all product types
+        /// </summary>
+        /// <returns>all product types</returns>
         [HttpGet("types")]
         public async Task<ActionResult<List<ProductType>>> GetProductTypes()
         {
