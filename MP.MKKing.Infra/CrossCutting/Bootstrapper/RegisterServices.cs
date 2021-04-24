@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MP.MKKing.Core.Interfaces;
 using MP.MKKing.Infra.Data.Context;
+using MP.MKKing.Infra.Data.Context.Identity;
 using MP.MKKing.Infra.Data.Repositories;
 using StackExchange.Redis;
 
@@ -18,6 +19,11 @@ namespace MP.MKKing.Infra.CrossCutting.Bootstrapper
             //DbContext
             services.AddDbContext<MKKingContext>(d => 
                 d.UseSqlite(config.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<AppIdentityDbContext>(o => 
+            {
+                o.UseSqlite(config.GetConnectionString("IdentityConnection"));
+            });
 
             services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = ConfigurationOptions.Parse(config.GetConnectionString("Redis"), true);
