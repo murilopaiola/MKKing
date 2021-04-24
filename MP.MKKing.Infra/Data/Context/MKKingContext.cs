@@ -25,7 +25,7 @@ namespace MP.MKKing.Infra.Data.Context
             // If using Sqlite (thus, in Development)
             if (Database.ProviderName == "Microsoft.EntityFrameworkCore.Sqlite")
             {
-                // We have to interate through each Entity property and convert from Decimal to Double, so we can sort by Price.
+                // We have to iterate through each Entity property and convert from Decimal to Double, so we can sort by Price.
                 // This is a necessary workaround, since Sqlite doesn't support decimal types
                 foreach (var entityType in modelBuilder.Model.GetEntityTypes())
                 {
