@@ -3,7 +3,7 @@ namespace MP.MKKing.API.DTOs
     /// <summary>
     /// The product DTO to be returned to the client
     /// </summary>
-    public class ProductDTO
+    public class ProductDto
     {
         public int Id { get; set; }
 

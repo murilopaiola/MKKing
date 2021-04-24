@@ -38,7 +38,7 @@ namespace MP.MKKing.API
         /// <param name="productParams"></param>
         /// <returns>Paginated products result</returns>
         [HttpGet]
-        public async Task<ActionResult<Pagination<ProductDTO>>> GetProducts([FromQuery]ProductSpecificationParameters productParams)
+        public async Task<ActionResult<Pagination<ProductDto>>> GetProducts([FromQuery]ProductSpecificationParameters productParams)
         {
             var specification = new ProductsWithTypesAndBrandsSpecification(productParams);
 
@@ -48,9 +48,9 @@ namespace MP.MKKing.API
 
             var totalItems = await _productRepository.CountAsync(countSpec);
 
-            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDTO>>(products);
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
 
-            return Ok(new Pagination<ProductDTO>(productParams.PageIndex, productParams.PageSize, totalItems, data));
+            return Ok(new Pagination<ProductDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace MP.MKKing.API
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<ActionResult<ProductDTO>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
             var specification = new ProductsWithTypesAndBrandsSpecification(id);
 
@@ -69,7 +69,7 @@ namespace MP.MKKing.API
 
             if (null == product) return NoContent();
 
-            return Ok(_mapper.Map<Product, ProductDTO>(product));
+            return Ok(_mapper.Map<Product, ProductDto>(product));
         }
 
         /// <summary>

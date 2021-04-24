@@ -1,11 +1,14 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MP.MKKing.Core.Models.Identity;
 using MP.MKKing.Infra.Data.Context;
+using MP.MKKing.Infra.Data.Context.Identity;
 using MP.MKKing.Infra.Data.Seed;
 
 namespace MP.MKKing.API
@@ -26,6 +29,11 @@ namespace MP.MKKing.API
                     var context = services.GetRequiredService<MKKingContext>();
                     await context.Database.MigrateAsync();
                     await MKKingContextSeed.SeedAsync(context, loggerFactory);
+
+                    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+                    await identityContext.Database.MigrateAsync();
+                    await AppIdentityDbContextSeed.SeedUsersAsync(userManager);
                 }
                 catch (Exception ex)
                 {

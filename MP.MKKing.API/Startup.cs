@@ -9,9 +9,9 @@ using Microsoft.OpenApi.Models;
 using MP.MKKing.API.Configuration.JWT;
 using MP.MKKing.API.Configuration.Swagger;
 using MP.MKKing.API.Errors;
+using MP.MKKing.API.Extensions;
 using MP.MKKing.API.Helpers;
 using MP.MKKing.API.Middleware;
-using MP.MKKing.Infra.CrossCutting.Bootstrapper;
 
 namespace MP.MKKing.API
 {
@@ -32,30 +32,13 @@ namespace MP.MKKing.API
 
             services.AddAutoMapper(typeof(MappingProfiles));
 
-            services.Register(Configuration);
+            services.AddDbContexts(Configuration);
+
+            services.AddAppServices();
+
+            services.AddIdentityServices(Configuration);
             
             // services.AddJwtConfiguration(System.Text.Encoding.ASCII.GetBytes(jwtSecret));
-
-            // Get the model state errors inside actionContext (which is what the ApiController attribute is using 
-            // to populate any errors that is related to validation, adding it to a model state dictionary).
-            services.Configure<ApiBehaviorOptions>(options => 
-            {
-                options.InvalidModelStateResponseFactory = actionContext => 
-                {
-                    // Extract the errors if there are any, and populate them into an array, which we pass into our ApiValidationErrorResponse
-                    var errors = actionContext.ModelState
-                        .Where(e => e.Value.Errors.Count > 0)
-                        .SelectMany(x => x.Value.Errors)
-                        .Select(x => x.ErrorMessage).ToArray();
-                    
-                    var errorResponse = new ApiValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-
-                    return new BadRequestObjectResult(errorResponse);
-                };
-            });
 
             services.AddSwagger();
 
@@ -85,6 +68,10 @@ namespace MP.MKKing.API
             app.UseStaticFiles();
 
             app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseSwaggerConfiguration();
 

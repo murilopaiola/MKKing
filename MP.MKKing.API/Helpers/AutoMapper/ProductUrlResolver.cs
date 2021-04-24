@@ -5,7 +5,7 @@ using MP.MKKing.Core.Models;
 
 namespace MP.MKKing.API.Helpers
 {
-    public class ProductUrlResolver : IValueResolver<Product, ProductDTO, string>
+    public class ProductUrlResolver : IValueResolver<Product, ProductDto, string>
     {
         private readonly IConfiguration _configuration;
 
@@ -22,7 +22,7 @@ namespace MP.MKKing.API.Helpers
         /// <param name="destMember"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string Resolve(Product source, ProductDTO destination, string destMember, ResolutionContext context) 
+        public string Resolve(Product source, ProductDto destination, string destMember, ResolutionContext context) 
             => !string.IsNullOrEmpty(source.PictureUrl) ? _configuration["ApiUrl"] + source.PictureUrl : null;
     }
 }
