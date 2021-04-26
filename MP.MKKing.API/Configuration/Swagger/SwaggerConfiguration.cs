@@ -28,30 +28,37 @@ namespace MP.MKKing.API.Configuration.Swagger
                     fileStream.Close();
                 }
                 c.IncludeXmlComments(xmlPath);
-                // c.AddSecurityDefinition("Bearer",
-                //     new OpenApiSecurityScheme
-                //     {
-                //         In = ParameterLocation.Header,
-                //         Type = SecuritySchemeType.ApiKey,
-                //         Description = "Please enter into field the word 'Bearer' following by space and your JWT token",
-                //         Name = "Authorization",
-                //         Scheme = "Bearer"
-                //     });
-                // c.AddSecurityRequirement(
-                //     new OpenApiSecurityRequirement()
-                //     {
-                //         {
-                //             new OpenApiSecurityScheme
-                //             {
-                //                 Reference = new OpenApiReference
-                //                 {
-                //                     Type = ReferenceType.SecurityScheme,
-                //                     Id = "Bearer"
-                //                 }
-                //             },
-                //             new List<string>()
-                //         }
-                //     });
+
+                c.AddSecurityDefinition("Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        In = ParameterLocation.Header,
+                        Type = SecuritySchemeType.ApiKey,
+                        Description = "Please enter into field the word 'Bearer' following by space and your JWT token",
+                        Name = "Authorization",
+                        Scheme = "Bearer",
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    });
+                    
+                c.AddSecurityRequirement(
+                    new OpenApiSecurityRequirement()
+                    {
+                        {
+                            new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            new List<string>()
+                        }
+                    });
             });
         }
 

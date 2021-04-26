@@ -91,6 +91,12 @@ namespace MP.MKKing.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto register)
         {
+            if (CheckEmailExistsAsync(register.Email).Result.Value)
+                return new BadRequestObjectResult(new ApiValidationErrorResponse
+                {
+                    Errors = new [] { "Email address is in use" }
+                });
+
             var user = new AppUser()
             {
                 DisplayName = register.DisplayName,

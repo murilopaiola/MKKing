@@ -17,7 +17,6 @@ namespace MP.MKKing.API
 {
     public class Startup
     {
-        public const string jwtSecret = "409F9F5D-6CB8-48ED-A1C0-AD602950B308";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,8 +37,6 @@ namespace MP.MKKing.API
 
             services.AddIdentityServices(Configuration);
             
-            // services.AddJwtConfiguration(System.Text.Encoding.ASCII.GetBytes(jwtSecret));
-
             services.AddSwagger();
 
             // Add CORS, so that any client that is not coming from port 4200 doesn't receive the headers that allow the browser to access our resources
